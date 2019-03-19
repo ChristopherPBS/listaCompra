@@ -1,14 +1,21 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { TabsControllerPage } from './../pages/tabs-controller/tabs-controller';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
+import { AdicionarItemPage } from '../pages/adicionar-item/adicionar-item';
+import { DespensaPage } from '../pages/despensa/despensa';
+import { ListaDeCompraPage } from '../pages/lista-de-compra/lista-de-compra';
+
+
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  @ViewChild(Nav) navCtrl: Nav;
+    rootPage:any = TabsControllerPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -18,5 +25,14 @@ export class MyApp {
       splashScreen.hide();
     });
   }
+  goToAdicionarItem(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(AdicionarItemPage);
+  }goToDespensa(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(DespensaPage);
+  }goToListaDeCompra(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(ListaDeCompraPage);
+  }
 }
-
